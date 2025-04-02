@@ -6,7 +6,7 @@ const inputAge = document.querySelector('.inputAge')
 const inputCity = document.querySelector('.inputCity')
 const inputSurname = document.querySelector('.inputSurname')
 const searchButton = document.querySelector('.searchButton')
-
+const serverUrl = 'https://homework-21-2.onrender.com'
 
 
 
@@ -50,7 +50,7 @@ const postDataFunction = async (url, nameobj, surnameobj, ageobj, cityobj) => {
 
 
 window.addEventListener('load', async () => {
-  const data = JSON.parse(await getDataFunction('http://localhost:3000/getUsers'))
+  const data = JSON.parse(await getDataFunction(`${serverUrl}/getUsers`))
   data.forEach(user => {
     list.insertAdjacentHTML(
       `beforeend`,
@@ -66,13 +66,13 @@ addButton.addEventListener('click', async () => {
   const city = inputCity.value
 
 
-  await postDataFunction('http://localhost:3000/addUser', name, surname, age, city)
+  await postDataFunction(`${serverUrl}/addUser`, name, surname, age, city)
   location.reload()
 })
 
 searchButton.addEventListener('click', async () => {
   const req = searchInput.value
-  const data = await getDataFunction(`http://localhost:3000/search?query=${req}`)
+  const data = await getDataFunction(`${serverUrl}/search?query=${req}`)
   console.log(data)
 
 
