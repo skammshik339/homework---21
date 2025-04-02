@@ -9,9 +9,7 @@ const clientUrl = process.env.clientUrl
 
 const app = express()
 
-const getPath = filename => path.join(__dirname, 'public', `${filename}.html`)
 
-app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(morgan(':method :url :status'))
 
@@ -77,9 +75,7 @@ app.get('/search', (req, res) => {
 
 
 
-app.use((req, res) => {
-  res.status(404).sendFile(getPath('404'))
-})
+
 
 app.listen(PORT, () => {
   console.log(`server is listening port: ${PORT}`)
